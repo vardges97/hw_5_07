@@ -1,10 +1,18 @@
-def factoral(n):
-    if (n==1 or n==0):
-        return 1
+db={}
+def factoral(num:int):
 
-    else:
+    try:
+        if (num==1 or num==0):
+            return 1
+        elif num in db:
+            return db[num]
 
-        return (n*factoral(n-1))
+        res = (num*factoral(num-1))
+        db[num]=res
+    except TypeError:
+        raise TypeError("argument must be integer")
+    except RecursionError:
+        raise RecursionError('Recursion limit reached')
+    return res
 
-
-print(factoral(6))
+print(factoral(40))
